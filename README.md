@@ -13,8 +13,8 @@ This application requires [Java](http://java.com/inc/BrowserRedirect1.jsp?locale
 ### Under the hood
 Random building generation is handled by the `BuildingEngine` class. Here's how it works:
 * `buildings` is a list of all buildings in the skyline. 
-* A value called `genPosition` keeps track of the x-coordinate of the left edge of the next building to be generated.
-* Each frame, all buildings are translated left by a small amount to create the side-scrolling effect, and `genPosition` is also translated left by the same amount. Then, a call is made to `generate()`.
-* `generate()` works as follows: while `genPosition` is onscreen (i.e. its value is less than the width of the screen), a new building is generated with left edge at an x-coordinate of `genPosition`, and `genPosition` is incremented by a random value. When `genPosition` is so large that it is offscreen to the right, the method ends.
-* In the `BuildingEngine` constructor, `genPosition` starts at 0--the left edge of the screen--and `generate()` is called. Thus, the skyline is filled with buildings from the very beginning.
-* Newly generated buildings have random widths, heights, and colors. They are also inserted into `buildings` at random positions. Since the order of buildings in `buildings` is the order in which they are painted, this allows for random overlap of buildings.
+* `genPosition` is the x-position of the left edge of the next building to be generated.
+* Each frame, all buildings are translated left by a small amount to create the side-scrolling effect, and `genPosition` is also translated left by the same amount. Then, `generate()` is called.
+* `generate()` works as follows: while `genPosition` is onscreen, a new building is generated with left edge at `genPosition`, and `genPosition` is translated right by a random value. When `genPosition` is offscreen to the right, the method ends.
+* In the `BuildingEngine` constructor, `genPosition` starts at the left edge of the screen, and `generate()` is called. Thus, the skyline is filled with buildings from the very beginning.
+* Newly generated buildings have random widths, heights, and colors. They are also inserted into `buildings` at random positions. Since the order of buildings in `buildings` is also the order in which they are painted, this allows for random overlap of buildings.
